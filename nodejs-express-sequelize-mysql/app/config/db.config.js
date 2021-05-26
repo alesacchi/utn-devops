@@ -1,5 +1,5 @@
 module.exports = {
-  HOST: "127.0.0.1",
+  HOST: "mysql",
   USER: "root",
   PASSWORD: "root",
   DB: "devops_app",
