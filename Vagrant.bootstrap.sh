@@ -44,15 +44,20 @@ fi
 APACHE_ROOT="/var/www"
 # ruta de la aplicación
 APP_PATH="$APACHE_ROOT/utn-devops-app/"
+API_PATH="$APACHE_ROOT/utn-devops-api/"
 
 # descargo la app del repositorio
 if [ ! -d  $APACHE_ROOT ]; then
 	sudo mkdir $APACHE_ROOT
 fi
 cd $APACHE_ROOT
-sudo git clone https://github.com/Fichen/utn-devops-app.git
+sudo git clone https://github.com/alesacchi/utn-devops.git utn-devops
+sudo git clone https://github.com/alesacchi/utn-devops.git utn-devops-app
+sudo git clone https://github.com/alesacchi/utn-devops.git utn-devops-api
 cd $APP_PATH
-sudo git checkout unidad-2
+sudo git checkout app
+cd $API_PATH
+sudo git checkout api
 
 ######## Instalacion de DOCKER ########
 #
@@ -80,3 +85,7 @@ if [ ! -x "$(command -v docker)" ]; then
 	#Lo configuro para que inicie en el arranque
 	sudo systemctl enable docker
 fi
+
+# Inicio docker-compose
+cd /vagrant/docker
+sudo docker-compose up -d

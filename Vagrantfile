@@ -19,6 +19,7 @@ Vagrant.configure("2") do |config|
   # solapen los puertos con los de nuestra equipo en el caso de que ese número de puerto este en uso.
 
   config.vm.network "forwarded_port", guest: 8081, host: 8081
+  config.vm.network "forwarded_port", guest: 8082, host: 8082
   config.vm.network "forwarded_port", guest: 4400, host: 4400
 
   # Create a private network, which allows host-only access to the machine
@@ -57,7 +58,8 @@ Vagrant.configure("2") do |config|
   #
   #
   # Customize the amount of memory on the VM:
-    vb.memory = "1024"
+    vb.memory = "2048"
+    vb.cpus = 2
   end
   #
   # View the documentation for the provider you are using for more

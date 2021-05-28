@@ -8,11 +8,22 @@ services:
       - "./configs/httpd/devops.site.conf:/etc/apache2/sites-available/000-default.conf"
       - "./configs/app/.env:/var/www/html/myapp/.env"
       - "./configs/app/config_app.sh:/tmp/config_app.sh"
-      - "/var/www/utn-devops-app:/var/www/html"
+      - "/var/www/utn-devops-app:/var/www/html/myapp"
     ports:
-      - "8081:80" 
+      - "8081:80"
     depends_on:
       - db_server
+  backend:
+    container_name: nodejs
+    image: node:12
+    ports:
+      - "8082:4200" 
+    depends_on:
+      - db_server
+    volumes:
+      - "/var/www/utn-devops-api/:/home/node/app"
+    working_dir: /home/node/app
+    command: npm start
   db_server:
     image: mysql:5.7
     container_name: mysql
@@ -24,3 +35,4 @@ services:
     volumes:
       - /var/db/mysql:/var/lib/mysql
       - "./configs/mysql/script.sql:/tmp/script.sql"
+      - "./configs/mysql/script.sql:/docker-entrypoint-initdb.d/1.sql"
