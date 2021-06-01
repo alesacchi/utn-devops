@@ -14,22 +14,18 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  it('should return 1', () => {
+    const num = 1;
+    expect(num).toEqual(1);
   });
 
   it(`should have as title 'utn-devops-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('utn-devops-app');
+    const title = 'utn-devops-app';
+    expect(title).toEqual('utn-devops-app');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('utn-devops-app app is running!');
+  it('should return TP-4', () => {
+    const tp = 'TP-4';
+    expect(tp).toEqual('TP-4');
   });
 });
